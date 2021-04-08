@@ -2,55 +2,58 @@ package cheifetz.paint;
 
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class PaintCanvas extends Canvas {
-    private GraphicsContext context;
+    private final GraphicsContext context = getGraphicsContext2D();
     private boolean draw = true;
+    private Color lineColor;
+
 
     public PaintCanvas() {
-        Canvas canvas = new Canvas();
-        context = canvas.getGraphicsContext2D();
-    }
 
-    public void onPressed(double x, double y, Color color) {
-        if(!draw) {
-            context.setStroke(Color.WHITESMOKE);
-        }
 
-            context.setStroke(color);
+        addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            if (!draw) {
+                double lineWidth = context.getLineWidth();
+                context.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+            }
+            context.setStroke(lineColor);
+            context.setLineWidth(3);
             context.beginPath();
-            context.lineTo(x, y);
-
-    }
-
-    public void onDragged(double x, double y) {
-        if(!draw) {
-            context.setStroke(Color.WHITESMOKE);
-        }
-            context.lineTo(x, y);
+            context.lineTo(e.getX(), e.getY());
+        });
+        addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
+            if (!draw) {
+                double lineWidth = context.getLineWidth();
+                context.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+            }
+            context.setStroke(lineColor);
+            context.setLineWidth(3);
+            context.lineTo(e.getX(), e.getY());
             context.stroke();
-    }
-    public void onReleased() {
-        if(!draw) {
-            context.setStroke(Color.WHITESMOKE);
-        }
+        });
+
+        addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
+            context.lineTo(e.getX(), e.getY());
             context.stroke();
             context.closePath();
+        });
+
     }
 
 
     public void setColor(Color color) {
-        context.setStroke(color);
+        this.lineColor = color;
+        context.setLineWidth(3);
     }
 
-    public void eraserOn(boolean on) {
-         if(on) draw = false;
+    public void eraserOn() {
+            this.lineColor = Color.WHITE;
+
     }
 }
 
