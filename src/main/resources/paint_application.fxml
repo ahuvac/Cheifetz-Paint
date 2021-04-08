@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import cheifetz.paint.PaintCanvas?>
+
+
+    <GridPane fx:controller="cheifetz.paint.PaintController"
+              xmlns:fx="http://javafx.com/fxml" >
+
+    <ToolBar orientation="VERTICAL" prefHeight="300.0" prefWidth="150.0" GridPane.columnIndex="0">
+
+        <ToggleButton text="Erase:" id="eraser"  GridPane.rowIndex="1" />
+        <Label text="line color:" id="color"  GridPane.rowIndex="2" />
+        <ColorPicker fx:id="colorpicker"
+                     GridPane.columnIndex="0" GridPane.rowIndex="3"
+        />
+    </ToolBar>
+
+    <PaintCanvas
+            GridPane.columnIndex="1"
+            fx:id="paintCanvas"
+            height="100"
+            width="100"
+            style="-fx-border-color:black;"
+    />
+
+</GridPane>
