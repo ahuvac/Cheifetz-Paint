@@ -2,29 +2,25 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import cheifetz.paint.PaintCanvas?>
-
 
     <GridPane fx:controller="cheifetz.paint.PaintController"
               xmlns:fx="http://javafx.com/fxml" >
 
     <ToolBar orientation="VERTICAL" prefHeight="300.0" prefWidth="150.0" GridPane.columnIndex="0">
-
-        <ToggleButton text="Erase:" id="eraser"  GridPane.rowIndex="1" onAction="#erase"/>
-        <Label text="line color:" id="color"  GridPane.rowIndex="2" />
-
+        <Label text="line width:" GridPane.rowIndex="0"/>
+        <Slider GridPane.rowIndex="1" fx:id="slider"  majorTickUnit="1" max="8" value="3"  showTickLabels="true" />
+        <Label text="line color:" fx:id="color"  GridPane.rowIndex="2" />
         <ColorPicker fx:id="colorpicker"
                      onAction="#changeColor"
                      GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Button text="clear" GridPane.rowIndex="4" onAction="#clear"/>
     </ToolBar>
 
     <PaintCanvas
             GridPane.columnIndex="1"
             fx:id="paintCanvas"
             height="300"
-            width="350"
-            style="-fx-border-color:black;"
-    />
+            width="350"/>
 
 </GridPane>
