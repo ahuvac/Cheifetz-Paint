@@ -11,7 +11,7 @@
         <Label text="line width:" GridPane.rowIndex="0"/>
         <Slider GridPane.rowIndex="1" fx:id="slider"  majorTickUnit="1" max="8" value="3"  showTickLabels="true" />
         <Label text="line color:" fx:id="color"  GridPane.rowIndex="2" />
-        <ColorPicker fx:id="colorpicker"
+        <ColorPicker fx:id="colorPicker"
                      onAction="#changeColor"
                      GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <Button text="clear" GridPane.rowIndex="4" onAction="#clear"/>
