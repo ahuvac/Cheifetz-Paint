@@ -9,6 +9,7 @@ import javafx.scene.paint.Paint;
 public class PaintCanvas extends Canvas {
     private final GraphicsContext context = getGraphicsContext2D();
     private double lineWidth = 3;
+    private Color color;
 
     public PaintCanvas() {
         addEventHandler(MouseEvent.MOUSE_PRESSED, this::draw);
@@ -29,19 +30,18 @@ public class PaintCanvas extends Canvas {
     }
 
     public void setColor(Color color) {
-        context.setStroke(color);
-    }
-
-    public Paint getColor() {
-        return context.getStroke();
+        this.color = color;
+        context.setStroke(this.color);
     }
 
     public void setLineWidth(double value) {
         lineWidth = value;
     }
 
-    public void clear() {
-        context.clearRect(0, 0, 350, 300);
+    public void clear() { context.clearRect(0, 0, 350, 300);}
+
+    public Object getColor() {
+        return this.color;
     }
 }
 

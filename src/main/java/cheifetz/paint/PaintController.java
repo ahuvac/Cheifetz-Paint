@@ -12,16 +12,12 @@ import javafx.scene.paint.Color;
 public class PaintController {
 
     @FXML
-    private PaintCanvas paintCanvas;
+     PaintCanvas paintCanvas;
     @FXML
-    private ColorPicker colorPicker
-            ;
+     ColorPicker colorPicker;
     @FXML
-    private Slider slider;
+     Slider slider;
 
-//    public PaintController(ColorPicker colorpicker) {
-//
-//    }
 
     public void initialize() {
         slider.valueProperty().addListener(new ChangeListener<Number>() {
