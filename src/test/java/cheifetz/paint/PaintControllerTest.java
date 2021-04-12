@@ -30,20 +30,17 @@ public class PaintControllerTest {
         // given
         givenPaintController();
         doNothing().when(controller.colorPicker).setValue(Color.BLACK);
-        controller.slider = mock(Slider.class);
-
         // when
         controller.initialize();
-
         //then
-        verify(colorpicker).setValue(Color.BLACK);
-
-
-
+        verify(controller.colorPicker).setValue(Color.BLACK);
     }
 
     private void givenPaintController() {
         controller = new PaintController();
+        paintcanvas = mock(PaintCanvas.class);
+        controller.paintCanvas = paintcanvas;
+        controller.slider = mock(Slider.class);
         controller.paintCanvas = mock(PaintCanvas.class);
         controller.colorPicker = mock(ColorPicker.class);
     }

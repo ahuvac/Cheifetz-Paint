@@ -1,8 +1,5 @@
 package cheifetz.paint;
 
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -20,11 +17,8 @@ public class PaintController {
 
 
     public void initialize() {
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov,
-                                Number old_val, Number new_val) {
-                paintCanvas.setLineWidth(new_val.doubleValue());
-            }
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            paintCanvas.setLineWidth(newValue.doubleValue());
         });
         colorPicker.setValue(Color.BLACK);
     }
