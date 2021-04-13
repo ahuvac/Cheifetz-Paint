@@ -5,16 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
-
 public class PaintController {
 
     @FXML
-     PaintCanvas paintCanvas;
+    PaintCanvas paintCanvas;
     @FXML
-     ColorPicker colorPicker;
+    ColorPicker colorPicker;
     @FXML
-     Slider slider;
-
+    Slider slider;
 
     public void initialize() {
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {

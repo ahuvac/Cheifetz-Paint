@@ -40,9 +40,6 @@ public class PaintCanvas extends Canvas {
 
     public void clear() { context.clearRect(0, 0, 350, 300);}
 
-    public Object getColor() {
-        return this.color;
-    }
 }
 
 

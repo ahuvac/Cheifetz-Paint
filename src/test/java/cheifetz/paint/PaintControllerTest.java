@@ -1,12 +1,13 @@
 package cheifetz.paint;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
@@ -14,10 +15,6 @@ import static org.mockito.Mockito.verify;
 public class PaintControllerTest {
 
     private PaintController controller;
-    private ColorPicker colorpicker;
-    private Slider slider;
-    private PaintCanvas paintcanvas;
-    private GraphicsContext context;
 
     @BeforeClass
     public static void beforeClass() {
@@ -38,32 +35,32 @@ public class PaintControllerTest {
 
     private void givenPaintController() {
         controller = new PaintController();
-        paintcanvas = mock(PaintCanvas.class);
-        controller.paintCanvas = paintcanvas;
+        controller.paintCanvas = mock(PaintCanvas.class);
         controller.slider = mock(Slider.class);
         controller.paintCanvas = mock(PaintCanvas.class);
         controller.colorPicker = mock(ColorPicker.class);
+        DoubleProperty doubleProperty = mock(DoubleProperty.class);
+        doReturn(doubleProperty).when(controller.slider).valueProperty();
     }
 
-//    @Test
-//    public void changeColor() {
-//        // given
-//        givenPaintController();
-//        ActionEvent event = mock(ActionEvent.class);
-//        doNothing().when(controller.colorPicker).setValue(Color.AQUA);
-//        // when
-//        controller.changeColor(event);
-//        // then
-//        verify(paintcanvas).setColor(Color.AQUA);
-//    }
+    @Test
+    public void changeColor() {
+        // given
+        givenPaintController();
+        doReturn(Color.AQUA).when(controller.colorPicker).getValue();
+        // when
+        controller.changeColor(mock(ActionEvent.class));
+        // then
+        verify(controller.paintCanvas).setColor(Color.AQUA);
+    }
 
-//    @Test
-//    public void clear() {
-//        givenPaintController();
-//        // when
-//        controller.clear();
-//        // then
-//        verify(paintcanvas).clear();
-//    }
+    @Test
+    public void clear() {
+        givenPaintController();
+        // when
+        controller.clear();
+        // then
+        verify(controller.paintCanvas).clear();
+    }
 
 }

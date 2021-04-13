@@ -8,12 +8,20 @@
               xmlns:fx="http://javafx.com/fxml" >
 
     <ToolBar orientation="VERTICAL" prefHeight="300.0" prefWidth="150.0" GridPane.columnIndex="0">
-        <Label text="line width:" GridPane.rowIndex="0"/>
-        <Slider GridPane.rowIndex="1" fx:id="slider"  majorTickUnit="1" max="8" value="3"  showTickLabels="true" />
-        <Label text="line color:" fx:id="color"  GridPane.rowIndex="2" />
+
+        <Label text="Color:" fx:id="color"  GridPane.rowIndex="0" />
         <ColorPicker fx:id="colorPicker"
                      onAction="#changeColor"
-                     GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                     GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+        <Label text="Thickness:" GridPane.rowIndex="2"/>
+        <Slider  GridPane.rowIndex="3"
+                 fx:id="slider"
+                 majorTickUnit="1"
+                 max="8"
+                 value="3"
+                 showTickLabels="true" />
+
         <Button text="clear" GridPane.rowIndex="4" onAction="#clear"/>
     </ToolBar>
 
